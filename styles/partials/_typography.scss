@@ -1,0 +1,363 @@
+@font-face {
+    font-family: 'Param';
+    src: url('/font/param/Param-Light.woff2') format('woff2'),
+        url('/font/param/Param-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Param';
+    src: url('/font/param/Param-Regular.woff2') format('woff2'),
+        url('/font/param/Param-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Param';
+    src: url('/font/param/Param-Medium.woff2') format('woff2'),
+        url('/font/param/Param-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Param';
+    src: url('/font/param/Param-Bold.woff2') format('woff2'),
+        url('/font/param/Param-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Param';
+    src: url('/font/param/Param-ExtraBold.woff2') format('woff2'),
+        url('/font/param/Param-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --font-param: 'Param';
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-param), sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.fs-1 {
+    font-size: 12px;
+}
+
+.fs-2 {
+    font-size: 14px;
+}
+
+.fs-3 {
+    font-size: 16px;
+}
+
+.fs-4 {
+    font-size: 18px;
+}
+
+.fs-5 {
+    font-size: 20px;
+}
+
+.fs-6 {
+    font-size: 24px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.justiy-content-center {
+    justify-content: center;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+::selection {
+    background-color: #3a0b85;
+    color: #ffffff;
+}
+
+.preloader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+    background: url(/images/param-preloader.gif) center no-repeat #fff;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.radius-0 {
+    border-radius: 0px;
+}
+
+.radius-8 {
+    border-radius: 8px;
+}
+
+.radius-12 {
+    border-radius: 12px;
+}
+
+.radius-16 {
+    border-radius: 16px;
+}
+
+.color-border-default {
+    border: 1px solid #f0f0f0;
+}
+
+.section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @media (max-width: 768px) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+}
+
+.section-padding-light {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    @media (max-width: 768px) {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+    }
+}
+
+.section-padding-single {
+    padding-bottom: 80px;
+
+    @media (max-width: 768px) {
+        padding-bottom: 40px;
+
+    }
+}
+
+hr {
+    margin: 0 0;
+    color: inherit;
+    background-color: rgba(53, 34, 34, 0.30);
+    border: 0;
+    height: 1px;
+    opacity: .25;
+}
+
+
+
+// Font Weight Generation
+@mixin generate-font-weight($max-weight, $step: 100) {
+    $num-steps: calc(($max-weight - 100) / $step) + 1;
+
+    @for $i from 1 through $num-steps {
+        $weight: 100 + ($i - 1) * $step;
+
+        .fw-#{$weight} {
+            font-weight: $weight !important;
+        }
+    }
+}
+
+@include generate-font-weight(900);
+
+// Spacing Mixins
+@mixin generate-spacing($direction, $d, $max-spacing) {
+    @for $i from 0 through $max-spacing {
+        $value: $i * 6;
+
+        .m#{$d}-#{$value} {
+            margin-#{$direction}: #{$value}px;
+        }
+
+        .p#{$d}-#{$value} {
+            padding-#{$direction}: #{$value}px;
+        }
+    }
+}
+
+// Double Margin/Padding
+@mixin double-single($max-spacing) {
+    @for $i from 0 through $max-spacing {
+        $value: $i * 6;
+
+        .mx-#{$value} {
+            margin-left: #{$value}px;
+            margin-right: #{$value}px;
+        }
+
+        .px-#{$value} {
+            padding-left: #{$value}px;
+            padding-right: #{$value}px;
+        }
+
+        .my-#{$value} {
+            margin-top: #{$value}px;
+            margin-bottom: #{$value}px;
+        }
+
+        .py-#{$value} {
+            padding-top: #{$value}px;
+            padding-bottom: #{$value}px;
+        }
+    }
+}
+
+// Single Margin/Padding
+@mixin spacing-single($max-spacing) {
+    @for $i from 0 through $max-spacing {
+        $value: $i * 6;
+
+        .m-#{$value} {
+            margin: #{$value}px;
+        }
+
+        .p-#{$value} {
+            padding: #{$value}px;
+        }
+    }
+}
+
+// Kullanım
+@include generate-spacing(top, t, 5);
+@include generate-spacing(bottom, b, 5);
+@include generate-spacing(left, l, 5);
+@include generate-spacing(right, r, 5);
+@include double-single(5);
+@include spacing-single(5);
+
+// Display Utilities
+$display-values: inline, inline-block, block, grid, inline-grid, table, table-row, table-cell, flex, inline-flex, none;
+$breakpoints: (
+    xs: 576px,
+    sm: 768px,
+    md: 992px,
+    lg: 1200px,
+    xl: 1400px
+);
+
+@mixin display-loop {
+    @each $display in $display-values {
+        .d-#{$display} {
+            display: #{$display};
+        }
+    }
+}
+
+@mixin responsive-display {
+    @each $breakpoint, $size in $breakpoints {
+        @media (min-width: $size) {
+            @each $display in $display-values {
+                .d-#{$breakpoint}-#{$display} {
+                    display: #{$display};
+                }
+            }
+        }
+    }
+}
+
+@include display-loop;
+@include responsive-display;
+
+// Text Alignment
+$text-alignments: center, left, right;
+
+@mixin textloop {
+    @each $breakpoint, $size in $breakpoints {
+        @media (min-width: $size) {
+            @each $alignment in $text-alignments {
+                .text-#{$breakpoint}-#{$alignment} {
+                    text-align: $alignment;
+                }
+            }
+        }
+    }
+}
+
+@include textloop;
+
+
+
+
+@media (max-width: 1400px) {}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {}

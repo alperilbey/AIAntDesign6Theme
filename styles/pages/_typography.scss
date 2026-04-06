@@ -1,0 +1,33 @@
+.test-page-container {
+  padding: var(--ant-padding-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .header-row {
+    margin-bottom: var(--ant-margin-lg);
+  }
+
+  .section-card {
+    margin-bottom: var(--ant-margin-lg);
+  }
+
+  .button-group-margin {
+    margin-top: var(--ant-margin);
+  }
+
+  .form-container {
+    max-width: 800px;
+  }
+
+  .form-size-section {
+    margin-top: var(--ant-margin-xs);
+  }
+
+  .validation-section {
+    margin-top: var(--ant-margin);
+  }
+
+  .text-secondary-color {
+    color: var(--ant-color-info);
+  }
+}
